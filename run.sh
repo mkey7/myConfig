@@ -14,12 +14,12 @@ if [ "$OS_NAME" == "Linux" ]; then
 
     # 复制 nvim 文件夹到 ~/.config/nvim
     if [ -d "nvim" ]; then
-        ln -sf nvim "$HOME/.config/nvim"
+		sudo ln -sf "$(pwd)/nvim" "$HOME/.config/nvim"
         echo "nvim 文件夹已复制到 ~/.config/nvim"
     else
         echo "nvim 文件夹不存在，请检查当前目录。"
     fi
-	ln -sf .tmux.conf "$HOME/.tmux.conf"
+	ln -sf "$(pwd)/.tmux.conf" "$HOME/.tmux.conf"
 	echo ".tmux.conf文件已复制到 ~/.tmux.conf"
 
 # 判断是否为 Windows 系统（例如通过 Git Bash 或 Cygwin）
