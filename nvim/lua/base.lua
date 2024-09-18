@@ -83,12 +83,10 @@ vim.opt.clipboard:append("unnamedplus")
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
---    -- 主题
+-- 鼠标
+vim.opt.mouse = a
 
-
-vim.opt.mouse = ""
 vim.opt.shada = ""
-
 
 -- 文件树浏览
 vim.g.netrw_banner = 0
@@ -98,4 +96,3 @@ vim.g.netrw_liststyle = 3
 --vim.g.netrw_altv = 1
 --vim.g.netrw_list_hide = '\.o\|\.d|.tmp\>'
 --vim.g.netrw_browse_split = 4
-
