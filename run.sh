@@ -7,6 +7,17 @@ OS_NAME=$(uname)
 if [ "$OS_NAME" == "Linux" ]; then
     echo "当前系统是 Linux"
 
+	if which nvim > /dev/null 2>&1; then
+		echo "Neovim is installed"
+	else
+		echo "Neovim is not installed"
+		wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+		sudo tar xzvf nvim-linux64.tar.gz
+		sudo mv nvim-linux64 /usr/local/nvim
+		sudo ln -s /usr/local/nvim/bin/nvim /usr/bin/nvim
+		rm nvim-linux64.tar.gz
+	fi
+
     # 确保目标目录存在
     if [ ! -d "$HOME/.config" ]; then
         mkdir -p "$HOME/.config"
