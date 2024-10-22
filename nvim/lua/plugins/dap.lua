@@ -4,27 +4,27 @@ return {
     lazy = true,
     keys = {
       {
-        "<F5>",
+        "<leader>dd",
         function() require("dap").continue() end,
         desc = "Launch/Continue debugging"
       },
       {
-        "<F10>",
+        "<leader>dx",
         function() require("dap").step_over() end,
         desc = "Step over"
       },
       {
-        "<F11>",
+        "<leader>di",
         function() require("dap").step_into() end,
         desc = "Step into"
       },
       {
-        "<C-F11>",
+        "<leader>do",
         function() require("dap").step_out() end,
         desc = "Step out"
       },
       {
-        "<F12>",
+        "<leader>db",
         function() require("dap").toggle_breakpoint() end,
         desc = "Toggle breakpoint"
       },
@@ -44,7 +44,8 @@ return {
       },
     },
     config = function()
-      local dap = require("dap")
+      -- local dap = require("dap")
+      local dap, dapui = require("dap"), require("dapui")
       -- c/c++/rust
       dap.adapters.gdb = {
         type = "executable",
@@ -127,6 +128,7 @@ return {
       -- 自动打开 dap-ui 调试界面
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
+        dap.repl.open()
       end
 
       -- 在调试终止或退出时自动关闭 dap-ui
