@@ -84,7 +84,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- 鼠标
-vim.opt.mouse = "a"
+vim.opt.mouse = ""
 
 vim.opt.shada = ""
 
