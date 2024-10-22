@@ -160,7 +160,7 @@ capslock::ctrl
 	c::f11
 	v::f12
 	space::tab
-	j::send("houjiang123456")
-	k::send("1034855223")
+	h::send("houjiang123456")
+	j::send("1034855223")
 
 
