@@ -38,11 +38,11 @@ vim.o.swapfile = false
 -- -- 每个分割窗口都有单独的状态行
 -- vim.opt.laststatus = 2
 
--- -- 使用空格而不是真实的制表符
--- vim.opt.expandtab = true
+ -- 使用空格而不是真实的制表符
+vim.opt.expandtab = true
 
 -- -- 光标以上和以下保持的最小屏幕行数
---vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 -- -- 在分割窗口中进行增量搜索
 -- vim.opt.inccommand = 'split'
@@ -56,8 +56,8 @@ vim.o.incsearch = true
 -- -- 在 Vim 中显示换行线的可视指示
 -- vim.opt.breakindent = true
 -- -- 设置每个缩进级别使用的空格数
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
 -- -- 自动缩进
 vim.opt.ai = true
 -- -- 智能缩进
@@ -65,7 +65,7 @@ vim.opt.si = true
 -- -- 不换行
 -- vim.opt.wrap = false
 -- -- vim.opt.backspace = 'start,eol,indent'
--- vim.opt.path:append { '**' } -- 查找文件 - 向下搜索子文件夹
+vim.opt.path:append { '**' } -- 查找文件 - 向下搜索子文件夹
 -- vim.opt.wildignore:append { '*/node_modules/*' }
 
 -- -- 下划线
