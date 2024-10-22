@@ -12,9 +12,9 @@ if [ "$OS_NAME" == "Linux" ]; then
 	else
 		echo "Neovim is not installed"
 		wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
-		sudo tar xzvf nvim-linux64.tar.gz
-		sudo mv nvim-linux64 /usr/local/nvim
-		sudo ln -s /usr/local/nvim/bin/nvim /usr/bin/nvim
+		tar xzvf nvim-linux64.tar.gz
+		mv nvim-linux64 /usr/local/nvim
+		ln -s /usr/local/nvim/bin/nvim /usr/bin/nvim
 		rm nvim-linux64.tar.gz
 	fi
 
@@ -25,7 +25,8 @@ if [ "$OS_NAME" == "Linux" ]; then
 
     # 复制 nvim 文件夹到 ~/.config/nvim
     if [ -d "nvim" ]; then
-		sudo ln -sf "$(pwd)/nvim" "$HOME/.config/nvim"
+		ln -sf "$(pwd)/nvim" "$HOME/.config/nvim"
+		ln -sf "$(pwd)/nvim" "/root/.config/nvim"
         echo "nvim 文件夹已复制到 ~/.config/nvim"
     else
         echo "nvim 文件夹不存在，请检查当前目录。"
