@@ -2,14 +2,17 @@
 return {
   {
     "williamboman/mason.nvim",
-    lazy = false,
-    build = ":MasonUpdate",
+    lazy = true,                                    -- 修改为懒加载
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" }, -- 仅在执行这些命令时加载
+    build = ":MasonUpdate",                         -- 保留 build 命令
     config = function()
       require("mason").setup()
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    lazy = true,                                    -- 修改为懒加载
+    event = { "BufReadPre", "BufNewFile" },  -- 在打开文件时加载 LSP
     dependencies = {
       "williamboman/mason.nvim",
       "neovim/nvim-lspconfig",
@@ -58,6 +61,8 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    lazy = true,                                    -- 修改为懒加载
+    event = { "BufReadPre", "BufNewFile" },  -- 在打开文件时加载 LSP
     keys = {
       {
         "<leader>e",

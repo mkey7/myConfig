@@ -1,7 +1,7 @@
 return {
   {
     "mfussenegger/nvim-dap",
-    event = "VeryLazy",
+    lazy = true,
     keys = {
       {
         "<F5>",
@@ -118,6 +118,8 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    lazy = true,
+    -- event = "VeryLazy",
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     opts = function()
       local dap, dapui = require("dap"), require("dapui")
@@ -164,23 +166,27 @@ return {
   },
   {
     "nvim-neotest/nvim-nio", -- Add this to resolve the error
+    lazy = true,
   },
   {
     "theHamsta/nvim-dap-virtual-text",
-    opts = {
-      enabled = true,                        -- 启用此插件
-      enabled_commands = true,               -- 启用命令，如 DapVirtualTextEnable, DapVirtualTextDisable 等
-      highlight_changed_variables = true,    -- 高亮已更改的变量值
-      highlight_new_as_changed = false,      -- 将新变量高亮显示为已更改的变量
-      show_stop_reason = true,               -- 在停止时显示停止原因
-      commented = false,                     -- 是否在虚拟文本前加上注释字符
-      only_first_definition = true,          -- 仅在变量的第一个定义位置显示虚拟文本
-      all_references = false,                -- 是否在所有引用处显示虚拟文本
-      filter_references_pattern = "<module", -- 当启用 all_references 时，过滤某些引用的正则表达式
-      virt_text_pos = "eol",                 -- 虚拟文本显示在行尾
-      all_frames = false,                    -- 仅显示当前栈帧的虚拟文本
-      virt_lines = false,                    -- 使用虚拟行而不是虚拟文本（可能会闪烁）
-      virt_text_win_col = nil,               -- 固定列位置显示虚拟文本
-    },
-  },
+    lazy = true,                              -- 设置懒加载
+    dependencies = { "mfussenegger/nvim-dap" }, -- 当 nvim-dap 启动时自动加载
+    config = function()
+      require("nvim-dap-virtual-text").setup({
+        enabled = true,
+        enabled_commands = true,
+        highlight_changed_variables = true,
+        highlight_new_as_changed = false,
+        show_stop_reason = true,
+        commented = false,
+        only_first_definition = true,
+        all_references = false,
+        filter_references_pattern = "<module",
+        virt_text_pos = "eol",
+        all_frames = false,
+        virt_lines = false,
+      })
+    end,
+  }
 }
