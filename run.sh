@@ -32,6 +32,7 @@ if [ "$OS_NAME" == "Linux" ]; then
         echo "nvim 文件夹不存在，请检查当前目录。"
     fi
 	ln -sf "$(pwd)/.tmux.conf" "$HOME/.tmux.conf"
+	ln -sf "$(pwd)/.tmux.conf" "/root/.tmux.conf"
 	echo ".tmux.conf文件已复制到 ~/.tmux.conf"
 
 # 判断是否为 Windows 系统（例如通过 Git Bash 或 Cygwin）
