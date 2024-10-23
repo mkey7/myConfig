@@ -96,3 +96,6 @@ vim.g.netrw_liststyle = 3
 --vim.g.netrw_altv = 1
 --vim.g.netrw_list_hide = '\.o\|\.d|.tmp\>'
 --vim.g.netrw_browse_split = 4
+
+-- 折叠
+vim.opt.foldmethod = syntax
