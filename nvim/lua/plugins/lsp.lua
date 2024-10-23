@@ -8,6 +8,13 @@ return {
     config = function()
       require("mason").setup()
     end,
+    opts = {
+      ensure_installed = {
+        "clangd",
+        "lua-language-server",
+        "python-lsp-server",
+      },
+    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
