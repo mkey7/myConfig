@@ -99,3 +99,6 @@ vim.g.netrw_liststyle = 3
 
 -- 折叠
 vim.opt.foldmethod = syntax
+
+-- 自动读取外部更改
+vim.o.autoread = true
