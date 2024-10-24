@@ -52,12 +52,12 @@ vim.o.smartcase = true
 vim.o.incsearch = true
 
 -- -- Vim 将根据当前上下文自动使用空格和制表符的混合进行缩进。
--- vim.opt.smarttab = true
+vim.opt.smarttab = true
 -- -- 在 Vim 中显示换行线的可视指示
 -- vim.opt.breakindent = true
 -- -- 设置每个缩进级别使用的空格数
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 -- -- 自动缩进
 vim.opt.ai = true
 -- -- 智能缩进
