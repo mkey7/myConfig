@@ -1,11 +1,13 @@
 return {
-  "hedyhli/outline.nvim",
-  keys = { { "<leader>O", "<cmd>Outline<cr>", desc = "Toggle Outline" } },
-  cmd = "Outline",
-    config = function()
-        require("outline").setup{
-
-        }
-    end,
-
+    {
+        "hedyhli/outline.nvim",
+        lazy = true,
+        cmd = { "Outline", "OutlineOpen" },
+        keys = { -- Example mapping to toggle outline
+            { "<leader>O", "<cmd>Outline<CR>", desc = "Toggle outline" },
+        },
+        opts = {
+            -- Your setup opts here
+        },
+    },
 }
