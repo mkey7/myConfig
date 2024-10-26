@@ -42,7 +42,7 @@ vim.o.swapfile = false
 vim.opt.expandtab = true
 
 -- -- 光标以上和以下保持的最小屏幕行数
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 3
 
 -- -- 在分割窗口中进行增量搜索
 -- vim.opt.inccommand = 'split'
