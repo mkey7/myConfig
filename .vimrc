@@ -6,7 +6,7 @@ set showmode        " 显示模式
 
 set hlsearch        " 高亮搜索
 set sm!             " 高亮括号
-colorscheme shine
+" colorscheme morning
 set cursorline      " 当前行高亮
 set ruler           " 当前列高亮
 set t_Co=256        " 启用256色
