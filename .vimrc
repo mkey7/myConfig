@@ -1,14 +1,22 @@
-set nu
-set showcmd
-let mapleader=" "
-set wrap
-set showmode
-set foldenable
-set completeopt=preview,menu " 代码补全
-set autoread
-set ignorecase
-set hlsearch
+set nu              " 显示行号
+set relativenumber  " 显示相对行号
+
+set showcmd         " 显示命令
+set showmode        " 显示模式
+
+set hlsearch        " 高亮搜索
+set sm!             " 高亮括号
 colorscheme shine
+set cursorline      " 当前行高亮
+set ruler           " 当前列高亮
+set t_Co=256        " 启用256色
+
+let mapleader=" "   " leader键为空格
+set ignorecase      " 搜索不区分大小写
+set autoread        " 文件修改过自动读取
+set foldenable      " 启用折叠
+set wrap            " 换行显示
+set completeopt=preview,menu " 代码补全
 
 " 剪切板
 set clipboard=unnamedplus
@@ -25,6 +33,7 @@ set softtabstop=4
 
 " Set the encoding format to UTF-8
 set encoding=utf-8
+set helplang=cn
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
