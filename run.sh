@@ -31,6 +31,11 @@ if [ "$OS_NAME" == "Linux" ]; then
     else
         echo "nvim 文件夹不存在，请检查当前目录。"
     fi
+
+    ln -sf "$(pwd)/.vimrc" "$HOME/.vimrc"
+    ln -sf "$(pwd)/.vimrc" "/root/.vimrc"
+	echo ".vimrc文件已复制到 ~/.vimrc"
+
 	ln -sf "$(pwd)/.tmux.conf" "$HOME/.tmux.conf"
 	ln -sf "$(pwd)/.tmux.conf" "/root/.tmux.conf"
 	echo ".tmux.conf文件已复制到 ~/.tmux.conf"

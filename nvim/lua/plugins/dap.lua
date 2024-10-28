@@ -51,6 +51,8 @@ return {
         config = function()
             -- local dap = require("dap")
             local dap, dapui = require("dap"), require("dapui")
+
+            -- codelldb 的执行路径
             local install_root_dir = vim.fn.stdpath("data") .. "/mason"
             local extension_path = install_root_dir .. "/packages/codelldb/extension/"
             local codelldb_path = extension_path .. "adapter/codelldb"
@@ -58,7 +60,6 @@ return {
             dap.adapters.gdb = {
                 type = "executable",
                 command = "gdb",
-                -- args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
                 args = { "-i", "dap" },
             }
             dap.adapters.codelldb = {
