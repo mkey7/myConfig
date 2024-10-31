@@ -16,6 +16,8 @@ if [ "$OS_NAME" == "Linux" ]; then
 		mv nvim-linux64 /usr/local/nvim
 		ln -s /usr/local/nvim/bin/nvim /usr/bin/nvim
 		rm nvim-linux64.tar.gz
+        # 安装tmux 的tpm
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	fi
 
     # 确保目标目录存在
