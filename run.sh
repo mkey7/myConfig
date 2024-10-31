@@ -17,7 +17,6 @@ if [ "$OS_NAME" == "Linux" ]; then
 		ln -s /usr/local/nvim/bin/nvim /usr/bin/nvim
 		rm nvim-linux64.tar.gz
         # 安装tmux 的tpm
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	fi
 
     # 确保目标目录存在
@@ -34,10 +33,22 @@ if [ "$OS_NAME" == "Linux" ]; then
         echo "nvim 文件夹不存在，请检查当前目录。"
     fi
 
+    # 复制 vim 配置文件
     ln -sf "$(pwd)/.vimrc" "$HOME/.vimrc"
     ln -sf "$(pwd)/.vimrc" "/root/.vimrc"
 	echo ".vimrc文件已复制到 ~/.vimrc"
 
+    # tmux plug manager
+    if [ ! -d ~/.tmux/plugins/ ];then
+        mkdir -p ~/.tmux/plugins/
+    fi
+
+    if [ ! -d ~/.tmux/plugins/tpm ];then
+        cd ~/.tmux/plugins/
+        git clone https://github.com/tmux-plugins/tpm
+    fi
+
+    # 链接 .tmux.conf 到当前用户和root用户
 	ln -sf "$(pwd)/.tmux.conf" "$HOME/.tmux.conf"
 	ln -sf "$(pwd)/.tmux.conf" "/root/.tmux.conf"
 	echo ".tmux.conf文件已复制到 ~/.tmux.conf"
