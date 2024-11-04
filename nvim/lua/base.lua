@@ -102,3 +102,4 @@ vim.opt.foldmethod = syntax
 
 -- 自动读取外部更改
 vim.o.autoread = true
+
