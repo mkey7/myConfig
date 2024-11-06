@@ -13,8 +13,9 @@ if [ "$OS_NAME" == "Linux" ]; then
 		echo "Neovim is not installed"
 		wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
 		tar xzvf nvim-linux64.tar.gz
-		mv nvim-linux64 /usr/local/nvim
-		ln -s /usr/local/nvim/bin/nvim /usr/bin/nvim
+		sudo mv nvim-linux64 /usr/local/nvim
+        sudo rm /usr/bin/nvim
+		sudo ln -s /usr/local/nvim/bin/nvim /usr/bin/nvim
 		rm nvim-linux64.tar.gz
         # 安装tmux 的tpm
 	fi
