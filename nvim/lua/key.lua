@@ -12,3 +12,5 @@ vim.keymap.set("n","]q","<cmd>:cn<cr>zz",{noremap = true, silent = true}, {desc 
 vim.keymap.set("n","]Q","<cmd>:clast<cr>zz",{noremap = true, silent = true}, {desc = "clast"})
 vim.keymap.set("n","<leader>co","<cmd>:cw<cr>",{noremap = true, silent = true}, {desc = "cw"})
 vim.keymap.set("n","<leader>cc","<cmd>:ccl<cr>",{noremap = true, silent = true}, {desc = "cclose"})
+vim.keymap.set("n","<leader>cn","<cmd>:cn<cr>",{noremap = true, silent = true}, {desc = "cnext"})
+vim.keymap.set("n","<leader>cp","<cmd>:cp<cr>",{noremap = true, silent = true}, {desc = "cprev"})
