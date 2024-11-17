@@ -67,6 +67,8 @@ vim.opt.si = true
 -- -- vim.opt.backspace = 'start,eol,indent'
 vim.opt.path:append { '**' } -- 查找文件 - 向下搜索子文件夹
 -- vim.opt.wildignore:append { '*/node_modules/*' }
+-- 补全菜单
+vim.opt.wildmenu = true
 
 -- -- 下划线
 -- -- "\e[4:3m" 是用于下划线文本的 ANSI 转义序列，宽度为1像素
