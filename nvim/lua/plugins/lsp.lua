@@ -4,17 +4,9 @@ return {
         "williamboman/mason.nvim",
         lazy = true,                                  -- 修改为懒加载
         cmd = { "Mason", "MasonInstall", "MasonUpdate" }, -- 仅在执行这些命令时加载
-        build = ":MasonUpdate",                       -- 保留 build 命令
         config = function()
             require("mason").setup()
         end,
-        opts = {
-            ensure_installed = {
-                "clangd",
-                "lua-language-server",
-                "python-lsp-server",
-            },
-        },
     },
     {
         "williamboman/mason-lspconfig.nvim",
@@ -23,13 +15,6 @@ return {
         dependencies = {
             "williamboman/mason.nvim",
             "neovim/nvim-lspconfig",
-        },
-        opts = {
-            ensure_installed = {
-                "python-lsp-server",
-                "clangd",
-                "lua-language-server",
-            },
         },
         keys = {
             {
