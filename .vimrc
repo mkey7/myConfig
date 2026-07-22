@@ -1,5 +1,6 @@
 set nu              " 显示行号
 set relativenumber  " 显示相对行号
+set paste
 
 set showcmd         " 显示命令
 set showmode        " 显示模式
