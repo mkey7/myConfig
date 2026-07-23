@@ -124,14 +124,14 @@ do
   --  See `:help 'clipboard'`
   vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
   vim.g.clipboard = {
-    name = "WSLClipboard",
+    name = "win32yank-wsl",
     copy = {
-      ["+"] = "clip.exe",
-      ["*"] = "clip.exe",
+      ["+"] = {"win32yank.exe", "-i", "--crlf"},
+      ["*"] = {"win32yank.exe", "-i", "--crlf"}
     },
     paste = {
-      ["+"] = 'powershell.exe -c "Get-Clipboard"',
-      ["*"] = 'powershell.exe -c "Get-Clipboard"',
+      ["+"] = {"win32yank.exe", "-o", "--lf"},
+      ["*"] = {"win32yank.exe", "-o", "--lf"}
     },
     cache_enabled = false,
   }
