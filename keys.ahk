@@ -1,22 +1,45 @@
 #singleinstance force	; 跳过对话框并自动替换旧实例
 #usehook
 
-global speed := 5
 global status := true
+global spaceLayer := false
 
-^!k::{
-	global status
-	status := !status
+; 条件热键不能直接使用 a::b 形式的重映射。重映射会被展开为
+; “目标键按下/目标键松开”两个热键；如果先松开层按键，#HotIf 条件
+; 会在源按键松开前失效，目标键的 Up 事件便可能丢失，造成按键卡住。
+; 改为一次发送完整的按下和松开事件，物理键自动重复时仍可连续触发。
+tapKey(key) {
+	send("{Blind}" key)
 }
 
-capslock::ctrl
+^!k::{
+	global status, spaceLayer
+	status := !status
+	; 关闭功能时清理层状态，避免在按住 Space 时切换造成状态残留。
+	if !status
+		spaceLayer := false
+}
 
 ;第二层
 ;数字，f区，符号
 #HotIf status 
 ~\::reload
 
+*Space::{
+	global spaceLayer
+	; 通用的 *Space 热键优先于后面 #HotIf 中的同名变体，
+	; 因此 Tab+Space 必须在这里先处理。
+	if GetKeyState("Tab", "p") {
+		tapKey("{Tab}")
+		return
+	}
+	; 用按键事件锁定第二层，避免快速连按时反复查询物理状态而漏判。
+	spaceLayer := true
+}
+
 *Space up::{
+	global spaceLayer
+	spaceLayer := false
 	if (A_Priorkey == "Space" && !GetKeyState("`;","p") && !GetKeyState("tab","p")){
 		send ("{blind}{Space}")
 	}
@@ -41,126 +64,73 @@ capslock::ctrl
 }
 
 ;第二层
-#HotIf status && GetKeyState("space","p")
-	tab::`
-	q::1
-	w::2
-	e::3
-	a::4
-	s::5
-	d::6
-	z::7
-	x::8
-	c::9
-	v::0
-	r::f1
-	t::f2
-	y::f3
-	u::f4
-	f::f5
-	g::f6
-	h::f7
-	j::f8
-	,::f9
-	m::f10
-	n::f11
-	b::f12
-	i::[
-	o::]
-	p::\
-	[::bs
-	k::-
-	l::=
-	.::/
-	`;::'
-	'::enter
-	/::del
+#HotIf status && spaceLayer
+	*tab::tapKey("``")
+	*q::tapKey("1")
+	*w::tapKey("2")
+	*e::tapKey("3")
+	*a::tapKey("4")
+	*s::tapKey("5")
+	*d::tapKey("6")
+	*z::tapKey("7")
+	*x::tapKey("8")
+	*c::tapKey("9")
+	*v::tapKey("0")
+	*r::tapKey("{F1}")
+	*t::tapKey("{F2}")
+	*y::tapKey("{F3}")
+	*u::tapKey("{F4}")
+	*f::tapKey("{F5}")
+	*g::tapKey("{F6}")
+	*h::tapKey("{F7}")
+	*j::tapKey("{F8}")
+	*,::tapKey("{F9}")
+	*m::tapKey("{F10}")
+	*n::tapKey("{F11}")
+	*b::tapKey("{F12}")
+	*i::tapKey("[")
+	*o::tapKey("]")
+	*p::tapKey("\")
+	*[::tapKey("{Backspace}")
+	*k::tapKey("-")
+	*l::tapKey("=")
+	*.::tapKey("/")
+	*`;::tapKey("'")
+	*'::tapKey("{Enter}")
+	*/::tapKey("{Delete}")
 
 ;第三层
 #HotIf status && GetKeyState("`;","p")
-	space::lbutton
-	f::lbutton
-	e::rbutton
-	r::mbutton
+	*h::tapKey("{Left}")
+	*j::tapKey("{Down}")
+	*k::tapKey("{Up}")
+	*l::tapKey("{Right}")
 
-	q::tab
-	tab::wheelup
-	lshift::wheeldown
+	*n::tapKey("{Home}")
+	*m::tapKey("{PgDn}")
+	*,::tapKey("{PgUp}")
+	*.::tapKey("{End}")
 
-	global speed
-	w::{
-		global speed
-		MouseMove 0, -50,speed,"R"
-		speed+=20
-	}
-	s::{
-		global speed
-		mousemove 0, 50,speed,"R"
-		speed+=20
-	}
-	a::{
-		global speed
-		mousemove -50, 0,speed,"R"
-		speed+=20
-	}
-	d::{
-		global speed
-		mousemove 50, 0,speed,"R"
-		speed+=20
-	}
+	*u::tapKey("{Volume_Mute}")
+	*i::tapKey("{Volume_Down}")
+	*o::tapKey("{Volume_Up}")
+	*p::tapKey("{Media_Play_Pause}")
 
-	w up:: speed:=5
-	a up:: speed:=5
-	s up:: speed:=5
-	d up:: speed:=5
-
-	space & w::mousemove 0, -15,speed,"R"
-	space & s::mousemove 0, 15,speed,"R"
-	space & a::mousemove -15, 0,speed,"R"
-	space & d::mousemove 15, 0,speed,"R"
-
-	capslock & w::wheelup
-	capslock & s::wheeldown
-	capslock & a::wheelleft
-	capslock & d::wheelright
-
-	h::left
-	j::down
-	k::up
-	l::right
-
-	n::home
-	m::pgdn
-	,::pgup
-	.::end
-
-	u::volume_mute
-	i::volume_down
-	o::volume_up
-	p::media_play_pause
-
-	c::capslock
-	z::tab
-	x::bs
-	v::enter
-	b::del
+	*f::tapKey("{Tab}")
+	*s::tapKey("{Escape}")
+	*d::tapKey("{Backspace}")
 
 	;第四层
 #HotIf status && GetKeyState("tab","p")
-	q::f1
-	w::f2
-	e::f3
-	r::f4
-	a::f5
-	s::f6
-	d::f7
-	f::f8
-	z::f9
-	x::f10
-	c::f11
-	v::f12
-	space::tab
-	h::send("houjiang123456")
-	j::send("1034855223")
-
-
+	*q::tapKey("{F1}")
+	*w::tapKey("{F2}")
+	*e::tapKey("{F3}")
+	*r::tapKey("{F4}")
+	*a::tapKey("{F5}")
+	*s::tapKey("{F6}")
+	*d::tapKey("{F7}")
+	*f::tapKey("{F8}")
+	*z::tapKey("{F9}")
+	*x::tapKey("{F10}")
+	*c::tapKey("{F11}")
+	*v::tapKey("{F12}")
