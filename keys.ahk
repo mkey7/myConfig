@@ -168,7 +168,8 @@ resetLayers() {
 *i::tapKey("{Volume_Down}")
 *o::tapKey("{Volume_Up}")
 *p::tapKey("{Media_Play_Pause}")
-*f::tapKey("{Tab}")
+*f::tapKey("{PgDn}")
+*b::tapKey("{PgUp}")
 *s::tapKey("{Escape}")
 *d::tapKey("{Backspace}")
 
