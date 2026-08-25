@@ -1,0 +1,2 @@
+Set objShell = CreateObject("WScript.Shell")
+objShell.Run "cmd /c cd /d ""C:\Users\houjianghao1\Downloads\windows-binaries-x64"" && kanata_windows_gui_winIOv2_cmd_allowed_x64.exe --cfg keys.kbd", 0, False

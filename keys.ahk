@@ -188,5 +188,6 @@ resetLayers() {
 *x::tapKey("{F10}")
 *c::tapKey("{F11}")
 *v::tapKey("{F12}")
+*h::Send "houjianghao"
 
 #HotIf

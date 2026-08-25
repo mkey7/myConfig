@@ -1,0 +1,62 @@
+;; Kanata translation of keys.ahk
+;;
+;; Space / ; / Tab are tap-hold layer keys:
+;;   tap  -> the original key
+;;   hold -> the corresponding layer
+;; The AHK global enable/reload hotkeys are runtime controls and are not
+;; represented here.
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defalias
+  ;; The timeout can be tuned to taste (milliseconds).
+  spc (tap-hold 200 200 spc (layer-while-held space))
+  scl (tap-hold 200 200 ; (layer-while-held semicolon))
+  tbh (tap-hold 200 200 tab (layer-while-held tab))
+  say (macro h o u j i a n g h a o)
+)
+
+(defsrc
+  ` 1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab q w e r t y u i o p [ ] \
+  caps a s d f g h j k l ; ' ret
+  lsft z x c v b n m , . / rsft
+  lctl lmet lalt spc ralt rmet menu rctl
+)
+
+(deflayer base
+  ` 1 2 3 4 5 6 7 8 9 0 - = bspc
+  @tbh q w e r t y u i o p [ ] \
+  caps a s d f g h j k l @scl ' ret
+  lsft z x c v b n m , . / rsft
+  lctl lmet lalt @spc ralt rmet menu rctl
+)
+
+;; Space layer: numbers, function keys and symbols.
+(deflayer space
+  _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  `    1   2   3   f1  f2  f3  f4  [ ] \ _ _ _
+  _  4   5   6   f5  f6  f7  f8  - = ' ret _
+  _  7   8   9   0   f12 f11 f10 f9  / del  _
+  _ _ _ _ _ _ _ _
+)
+
+;; Semicolon layer: navigation, editing and media.
+(deflayer semicolon
+  _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ mute vold volu pp _ _ _ _
+  _ _ esc bspc pgdn _ left down up rght _ _ _
+  _ _ _ _ _ pgup home pgdn pgup end _ _
+  _ _ _ _ _ _ _ _
+)
+
+;; Tab layer: F1-F12 and the custom text action from AHK.
+(deflayer tab
+  _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ f1  f2  f3  f4  _ _ _ _ _ _ _ _ _
+  _ f5  f6  f7  f8  _ @say _ _ _ _ _ _
+  _ f9  f10 f11 f12 _ _ _ _ _ _ _
+  _ _ _ esc _ _ _ _
+)
