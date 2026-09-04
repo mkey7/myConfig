@@ -2,7 +2,9 @@
 ;;
 ;; Space / ; / Tab are tap-hold layer keys:
 ;;   tap  -> the original key
-;;   hold -> the corresponding layer
+;;   hold -> the corresponding layer.  The `tap-hold-press` variant
+;;          promotes to hold as soon as another key is pressed, so
+;;          layer chords do not wait for the timeout.
 ;; The AHK global enable/reload hotkeys are runtime controls and are not
 ;; represented here.
 
@@ -11,10 +13,11 @@
 )
 
 (defalias
-  ;; The timeout can be tuned to taste (milliseconds).
-  spc (tap-hold 200 200 spc (layer-while-held space))
-  scl (tap-hold 200 200 ; (layer-while-held semicolon))
-  tbh (tap-hold 200 200 tab (layer-while-held tab))
+  ;; The timeout still controls ambiguous taps; pressing another key
+  ;; immediately selects the layer.
+  spc (tap-hold-press 200 200 spc (layer-while-held space))
+  scl (tap-hold-press 200 200 ; (layer-while-held semicolon))
+  tbh (tap-hold-press 200 200 tab (layer-while-held tab))
   say (macro h o u j i a n g h a o)
 )
 
