@@ -1,39 +1,34 @@
 return {
-  "aserowy/tmux.nvim",
-  keys = {
-    {
-      "<c-h>",
-      function()
-        require("tmux").move_left()
-      end,
-      desc = "tmux 左移",
-    },
-    {
-      "<c-j>",
-      function()
-        require("tmux").move_bottom()
-      end,
-      desc = "tmux 下移",
-    },
-    {
-      "<c-k>",
-      function()
-        require("tmux").move_top()
-      end,
-      desc = "tmux 上移",
-    },
-    {
-      "<c-l>",
-      function()
-        require("tmux").move_right()
-      end,
-      desc = "tmux 右移",
-    },
+  -- 1. tmux 导航插件（可选，但装上也没坏处）
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+    init = function()
+      -- 禁用自带映射，避免与 Herdr 导航冲突
+      vim.g.tmux_navigator_no_mappings = 1
+    end,
   },
-  opts = {
-    navigation = {
-      -- 关键：禁用插件的默认键位，由上面的 keys 接管
-      enable_default_keybindings = false,
-    },
+  {
+    "bojackduy/nvim-herdr-navigation",
+    submodules = false,
+    cond = function()
+      return vim.env.HERDR_PANE_ID ~= nil
+    end,
+    event = "VeryLazy",
+    init = function(plugin)
+      vim.opt.rtp:prepend(plugin.dir .. "/nvim-herdr-navigation")
+    end,
+    config = function()
+      vim.schedule(function()
+        require("herdr-navigation").setup({
+          keybindings = {
+            left = "<C-h>",
+            down = "<C-j>",
+            up = "<C-k>",
+            right = "<C-l>",
+          },
+        })
+      end)
+    end,
   },
 }
